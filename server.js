@@ -70,7 +70,7 @@ io.on('connection',(socket)=>{
         socket.broadcast.emit('receive-hand-down',name,roomId) 
     })
     socket.on('disconnect',(roomId)=>{
-        concole.log(roomId)
+       // console.log(roomId)
         console.log('disconnect')
         const peerId=socketToPeerHashMap[socket.id]
         io.emit("user:left",peerId)
