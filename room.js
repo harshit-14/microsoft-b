@@ -16,15 +16,22 @@ class Room {
     }
    
     removeParticipants=(participantId)=>{
+        console.log('remove')
         let index=this.participants.findIndex(
-            (existingParticipantId)=>existingParticipantId===participantId
+            (existingParticipantId)=>existingParticipantId.id===participantId
         )
-
+        //console.log('before-',this.participants)
         if(index>-1)
         {
             this.participants.splice(index,1)
+            //console.log(this.participants)
         }
     }
+    getInfo = () => ({
+        participants: this.participants,
+        roomId: this.roomId,
+        author: this.author
+    })
 }
 
 module.exports=Room;
