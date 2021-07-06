@@ -5,10 +5,17 @@ class Room {
     roomId=null
     author=null
 
-    constructor(author)
+    constructor(body)
     {
-        this.roomId=v4();
-        this.author=author
+        if(body.roomId)
+        {
+            this.roomId=body.roomId
+        }
+        else{
+            this.roomId=v4();
+        }
+        
+        this.author=body.author
     }
 
     addParticipants=(participantId)=>{

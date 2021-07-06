@@ -7,6 +7,7 @@ module.exports=(app)=>{
     
     //register 
     app.post('/api/auth/register',(req,res)=>{
+        console.log(req.body)
         const {name,email,password}=req.body
 
         if(!name||!email||!password)
