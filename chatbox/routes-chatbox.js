@@ -197,7 +197,7 @@ module.exports=(app)=>{
     })
     app.get('/allMess/:roomId',(req,res)=>{
         const {roomId}=req.params
-        Message.findOne({roomId})
+        RoomMessages.findOne({roomId})
             .then(result=>{
                 return res.json(result);
             })
