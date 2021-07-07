@@ -1,17 +1,18 @@
 const RoomIdModel = require("./room-id-model")
 const UserInRooms= require("./user-in-room-model")
 const RoomMessages=require('./chat-in-rooms-model')
-const roomIdModel = require("./room-id-model")
 module.exports=(app)=>{
 
     app.post("/chatbox/createRoom",(req,res)=>{
      const {name,email,roomname,roomId} =req.body
+     console.log(req.body)
       const user=new RoomIdModel({
        roomId,
        name:roomname,
        participants:[
             {
-                email
+                email,
+                ParticipantsName:name
             }
         ]
       })
@@ -58,7 +59,7 @@ module.exports=(app)=>{
                 .catch(err=>{
                     return res.json(err)
                 })
-              //return res.status(200).json(data)  
+             
             })
             .catch(err=>{
                 res.json(err)
@@ -83,7 +84,8 @@ module.exports=(app)=>{
                   user.save()
                   .then(data=>{
                       room.participants.push({
-                          email
+                          email,
+                          ParticipantsName:name
                       })
                       room.save()
                       .then(success=>{
@@ -93,12 +95,12 @@ module.exports=(app)=>{
                             })
                       })
                       .catch(err=>{
-                          console.log("111111111111111111111")
+                          
                           return res.status(400).json(err)
                       })
                   })
                   .catch(err=>{
-                    console.log("22222222222222222")
+                    
                       return res.status(400).json(err)
                   })
               }
@@ -117,7 +119,8 @@ module.exports=(app)=>{
                   data.save()
                   .then(participant=>{
                       room.participant.push({
-                          email
+                          email,
+                          ParticipantsName:name
                       })
                       room.save()
                       .then(success=>{
@@ -132,18 +135,18 @@ module.exports=(app)=>{
                       return res.status(200).json(participant)
                   })
                   .catch(err=>{
-                   // console.log("aaaaaaaaaaaaaaaaaa")
+                  
                       return res.status(500).json(err)
                   })
               }
           })
           .catch(err=>{
-             // console.log("hhhhhhhhhhhhhhhhhhhh")
+            
               return res.status(400).json(err)
           })
         })
         .catch(err=>{
-            //console.log("kkkkkkkkkkkkkkkkkkkk")
+           
             return res.status(400).json({msg:"no room found"})
         })
     })

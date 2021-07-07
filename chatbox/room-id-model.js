@@ -14,6 +14,9 @@ const roomIdSchema = new Schema({
     participants:[{
         email:{
             type:String
+        },
+        ParticipantsName:{
+            type:String
         }
     }]
 })
