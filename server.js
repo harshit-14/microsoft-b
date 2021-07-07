@@ -93,7 +93,7 @@ io.on('connection',(socket)=>{
         }
             if (roomIndex > -1) {
                 let room = rooms[roomIndex]
-                room.removeParticipants(peerId);
+                room.removeUser(peerId);
                 rooms[roomIndex] = room
             }
     })
@@ -117,7 +117,7 @@ app.post('/rooms',(req,res)=>{
     console.log(req.body)
     const newRoom=new Room(req.body)
     rooms.push(newRoom)
-    console.log("jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj",newRoom)
+    
     res.json({
         roomId:newRoom.roomId
     })
@@ -138,7 +138,7 @@ app.post('/rooms/:roomId/join',(req,res)=>{
     console.log(roomIndex)
     if (roomIndex > -1) {
         room = rooms[roomIndex]
-        room.addParticipants(body.participant);
+        room.addUser(body.participant);
         rooms[roomIndex] = room
         console.log(room.getInfo())
         res.json({ ...room.getInfo() })
@@ -162,7 +162,7 @@ app.post('/name',(req,res)=>{
 })
 
 app.post('/api/send',(req,res)=>{
-    let transporter = nodemailer.createTransport({
+    let sender = nodemailer.createTransport({
      host:'smtp.gmail.com',
      port:465,
      secure:true,
@@ -181,7 +181,7 @@ app.post('/api/send',(req,res)=>{
            subject:"Link to join teams",
            html:"<h3>"+req.body.from+"</h3><br></br><h2>Joining Link</h2>"+"<h3 style='font-weight:bold'>"+req.body.url+"</h3>"
         }
-        transporter.sendMail(options,(error,info)=>{
+        sender.sendMail(options,(error,info)=>{
            if(error)
            {
                return console.log(error)

@@ -1,6 +1,7 @@
 const RoomIdModel = require("./room-id-model")
 const UserInRooms= require("./user-in-room-model")
-const Message=require('./chat-in-rooms-model')
+const RoomMessages=require('./chat-in-rooms-model')
+const roomIdModel = require("./room-id-model")
 module.exports=(app)=>{
 
     app.post("/chatbox/createRoom",(req,res)=>{
@@ -149,7 +150,7 @@ module.exports=(app)=>{
 
     app.post('/newMess',(req,res)=>{
         const {roomId,name,mess,email}=req.body;
-        Message.findOne({roomId})
+        RoomMessages.findOne({roomId})
             .then(data=>{
                 if(data)
                 {
@@ -169,7 +170,7 @@ module.exports=(app)=>{
                 }
                 else
                 {
-                    const newChat=new Message({
+                    const newChat=new RoomMessages({
                         roomId,
                         message:[
                             {

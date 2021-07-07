@@ -18,11 +18,11 @@ class Room {
         this.author=body.author
     }
 
-    addParticipants=(participantId)=>{
+    addUser=(participantId)=>{
         this.participants.push(participantId)
     }
    
-    removeParticipants=(participantId)=>{
+    removeUser=(participantId)=>{
         console.log('remove')
         let index=this.participants.findIndex(
             (existingParticipantId)=>existingParticipantId.id===participantId

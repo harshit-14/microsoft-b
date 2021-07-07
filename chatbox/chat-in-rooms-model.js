@@ -1,7 +1,7 @@
 const mongoose=require('mongoose')
 const Schema=mongoose.Schema
 
-const chatSchema=new Schema({
+const chatboxSchema=new Schema({
     roomId:{
         type:String
     },
@@ -21,4 +21,4 @@ const chatSchema=new Schema({
     }]
 })
 
-module.exports=mongoose.model('Message',chatSchema)
+module.exports=mongoose.model('RoomMessages',chatboxSchema)
