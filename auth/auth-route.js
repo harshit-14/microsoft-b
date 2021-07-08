@@ -74,7 +74,6 @@ module.exports=(app)=>{
         {
             return res.status(400).json({msg:"Enter all fields"})
         }
-
         AppUser.findOne({email})
             .then(user=>{
                 if(!user)
