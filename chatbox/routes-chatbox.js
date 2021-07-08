@@ -6,7 +6,7 @@ module.exports=(app)=>{
     app.post("/chatbox/createRoom",(req,res)=>{
      const {name,email,roomname,roomId} =req.body
      console.log(req.body)
-      const user=new RoomIdModel({
+      const team=new RoomIdModel({
        roomId,
        name:roomname,
        participants:[
@@ -16,7 +16,7 @@ module.exports=(app)=>{
             }
         ]
       })
-       user.save()
+       team.save()
             .then(data=>{
                 UserInRooms.findOne({email})
                 .then((data)=>{
@@ -27,11 +27,11 @@ module.exports=(app)=>{
                             name:roomname
                         })
                         data.save()
-                        .then((success)=>{
-                           return  res.json(success)
+                        .then((result)=>{
+                           return  res.json(result)
                         })
-                        .catch((err)=>{
-                            return res.json(err)
+                        .catch((e)=>{
+                            return res.json(e)
                         })
                     }
                     else
@@ -47,31 +47,30 @@ module.exports=(app)=>{
                             ]
                         })
                         newParti.save()
-                        .then(success=>{
-                           return res.json(success)
+                        .then(result=>{
+                           return res.json(result)
                         })
-                        .catch(err=>{
-                            return res.json(err)
+                        .catch(e=>{
+                            return res.json(e)
                         })
                     }
                   
                 })
-                .catch(err=>{
-                    return res.json(err)
+                .catch(e=>{
+                    return res.json(e)
                 })
              
             })
-            .catch(err=>{
-                res.json(err)
+            .catch(e=>{
+                res.json(e)
             })
     })
     
     app.post("/chatbox/joinRoom",(req,res)=>{
         const {name,email,roomId} = req.body;
-        console.log(req.body)
         RoomIdModel.findOne({roomId})
-        .then(room=>{
-         const roomname=room.name
+        .then(team=>{
+         const roomname=team.name
          UserInRooms.findOne({email})
           .then(user=>{
               if(user)
@@ -83,30 +82,25 @@ module.exports=(app)=>{
                   })
                   user.save()
                   .then(data=>{
-                      room.participants.push({
+                      team.participants.push({
                           email,
                           ParticipantsName:name
                       })
-                      room.save()
-                      .then(success=>{
-                          return res.status(200).json({
-                              data,
-                              success
-                            })
+                      team.save()
+                      .then(result=>{
+                          return res.status(200).json({result})
                       })
-                      .catch(err=>{
-                          
-                          return res.status(400).json(err)
+                      .catch(e=>{
+                          return res.status(400).json(e)
                       })
                   })
-                  .catch(err=>{
-                    
-                      return res.status(400).json(err)
+                  .catch(e=>{
+                      return res.status(400).json(e)
                   })
               }
               else
               {
-                  const data=new Partipant({
+                  const newUser=new UserInRooms({
                       name,
                       email,
                       rooms:[
@@ -116,42 +110,39 @@ module.exports=(app)=>{
                           }
                       ]
                   })
-                  data.save()
+                  newUser.save()
                   .then(participant=>{
-                      room.participant.push({
+                      team.participant.push({
                           email,
                           ParticipantsName:name
                       })
-                      room.save()
-                      .then(success=>{
-                          return res.status(200).json({
-                              participant,
-                              success
-                          })
+                      team.save()
+                      .then(result=>{
+                          return res.status(200).json({result})
                       })
-                      .catch(err=>{
-                          return res.status(400).json(err)
+                      .catch(e=>{
+                          return res.status(400).json(e)
                       })
                       return res.status(200).json(participant)
                   })
-                  .catch(err=>{
+                  .catch(e=>{
                   
-                      return res.status(500).json(err)
+                      return res.status(500).json(e)
                   })
               }
           })
-          .catch(err=>{
+          .catch(e=>{
             
-              return res.status(400).json(err)
+              return res.status(400).json(e)
           })
         })
-        .catch(err=>{
+        .catch(e=>{
            
             return res.status(400).json({msg:"no room found"})
         })
     })
 
-    app.post('/newMess',(req,res)=>{
+    app.post('/chatbox/messArrived',(req,res)=>{
         const {roomId,name,mess,email}=req.body;
         RoomMessages.findOne({roomId})
             .then(data=>{
@@ -198,7 +189,7 @@ module.exports=(app)=>{
             })
 
     })
-    app.get('/allMess/:roomId',(req,res)=>{
+    app.get('/chatbox/mess/:roomId',(req,res)=>{
         const {roomId}=req.params
         RoomMessages.findOne({roomId})
             .then(result=>{
@@ -210,7 +201,7 @@ module.exports=(app)=>{
             })
     })
   
-    app.get('/personDetails/:email',(req,res)=>{
+    app.get('/chatbox/userInfo/:email',(req,res)=>{
         const {email}=req.params
         UserInRooms.findOne({email})
                     .then(data=>{
@@ -221,7 +212,7 @@ module.exports=(app)=>{
                     })
     })
 
-    app.get('/roomDetails/:roomId',(req,res)=>{
+    app.get('/chatbox/roomInfo/:roomId',(req,res)=>{
         const {roomId}=req.params
         RoomIdModel.findOne({roomId}) 
             .then(data=>{

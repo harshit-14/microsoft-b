@@ -1,20 +1,19 @@
 require('dotenv').config()
-const User=require('./user-model')
+const AppUser=require('./user-model')
 const bcrypt=require('bcryptjs')
 const jwt=require('jsonwebtoken')
 
 module.exports=(app)=>{
     
     //register 
-    app.post('/api/auth/register',(req,res)=>{
+    app.post('/register',(req,res)=>{
         console.log(req.body)
         const {name,email,password}=req.body
-
         if(!name||!email||!password)
         {
-            return res.status(400).json({msg:'Please enter all fields'})
+            return res.status(400).json({msg:'Enter all fields'})
         }
-        User.findOne({email})
+        AppUser.findOne({email})
             .then(user=>{
                 if(user)
                 {
@@ -22,18 +21,17 @@ module.exports=(app)=>{
                 }
                 else
                 {
-                    const newUser=new User({
+                    const newAppUser=new AppUser({
                         name,
                         email,
                         password
                     })
 
                     bcrypt.genSalt(10,(err,salt)=>{
-                        bcrypt.hash(newUser.password,salt,(err,hash)=>{
+                        bcrypt.hash(newAppUser.password,salt,(err,hash)=>{
                             if(err) throw err;
-
-                            newUser.password=hash;
-                            newUser.save()
+                            newAppUser.password=hash;
+                            newAppUser.save()
                                     .then(user=>{
                                         jwt.sign(
                                             {id:user.id},
@@ -70,28 +68,25 @@ module.exports=(app)=>{
     })
 
     //login
-    app.post('/api/auth/login',(req,res)=>{
+    app.post('/login',(req,res)=>{
         const {email,password}=req.body
         if(!email||!password)
         {
-            return res.status(400).json({msg:"please enter all fields"})
+            return res.status(400).json({msg:"Enter all fields"})
         }
 
-        User.findOne({email})
+        AppUser.findOne({email})
             .then(user=>{
                 if(!user)
                 {
                     return res.status(400).json({msg:"user does not exist"})
                 }
-
-                //compare password
                 bcrypt.compare(password,user.password)
-                    .then(isMatch=>{
-                        if(!isMatch)
+                    .then(valid=>{
+                        if(!valid)
                         {
                             return  res.status(400).json({msg:"Invalid User"})
                         }
-
                         jwt.sign(
                             {id:user.id},
                             process.env.jwtSecret,
@@ -119,30 +114,6 @@ module.exports=(app)=>{
             })
 
 
-    })
-
-    //get user from token
-    app.get('/api/auth/getUser',(req,res)=>{
-        const token=req.header('x-auth-token')
-
-        if(!token)
-        {
-            return res.status(400).json({msg:"No token,Unauthorised user"})
-        }
-
-        try
-        {
-            const decoded=jwt.verify(token,process.env.jwtSecret)
-            User.findById(decoded.id)
-                .select('-password')
-                .then(user=>res.status(200).json(user))
-                .catch(err=>res.json(err))
-
-        }
-        catch(e)
-        {
-            return res.status(400).json({msg:"Token is not valid"})
-        }
     })
 
 }
