@@ -13,7 +13,7 @@ const chatboxSchema=new Schema({
             type:String
         },
         mess:{
-            type:String
+            type:String 
         },
         time:{
             type:String,

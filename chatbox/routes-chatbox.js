@@ -211,7 +211,6 @@ module.exports=(app)=>{
                         res.json(err)
                     })
     })
-
     app.get('/chatbox/roomInfo/:roomId',(req,res)=>{
         const {roomId}=req.params
         RoomIdModel.findOne({roomId}) 
@@ -222,7 +221,43 @@ module.exports=(app)=>{
                 res.json(err)
             })
     })
-
+    app.post('/chatbox/leaveroom',(req,res)=>{
+        const {email,name,roomId} = req.body
+      
+        
+        UserInRooms.find(email)
+        .then((data)=>{
+            console.log(data[0].rooms.length);
+            for(let i=0;i<data[0].rooms.length;i++)
+            {  
+                if(data[0].rooms[i].roomId==roomId.roomId)
+                {
+                   console.log("mil gyi");
+                   data[0].rooms.splice(i,1)
+                   data[0].save()
+                   RoomIdModel.find(roomId)
+                   .then((room)=>{
+                    
+                      for(let j=0;j<room[0].participants.length;j++)
+                      {
+                          console.log(room[0].participants[j].email)
+                          console.log(email)
+                          if(room[0].participants[j].email==email.email)
+                          {
+                           
+                            room[0].participants.splice(j,1)
+                            room[0].save()
+                            return res.json("success")
+                          }
+                      }
+                   })
+                   .catch((e)=>console.log(e))
+                }
+            }
+           // console.log(data.rooms.size)
+        })
+        .catch(e=>console.log(e))
+    })
 }
 
 
