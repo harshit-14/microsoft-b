@@ -1,0 +1,64 @@
+.share-meet-outer
+{
+    padding: 20px;
+    position: fixed;
+    justify-content: center;
+  text-align: center;
+  justify-self: center;
+  margin-left: 35vw;
+    background-image:linear-gradient(#eeaeca,#94bbe9);
+    border-radius: 17px;
+    box-shadow: 0 0 20px rgb(31, 22, 10);
+    margin-top: 15vh;
+    height: 60vh;
+    width: 30vw;
+    z-index: 12;
+    
+}
+.form{
+    background-size: contain;
+    height: 50vh;
+    display: grid;
+    grid-template-columns: auto;
+}
+.from{
+    padding: 20px;
+    position: relative;
+    border: none;
+    box-shadow: #94bbe9;
+  
+  
+   
+}
+.form .from-text{
+  font-weight: 700;
+    color: blue;
+}
+.form .submit{
+    font-weight: 700;
+    color: black;
+}
+.to{
+  
+    padding: 20px;
+    border-radius: 10px;
+    border: none;
+    line-height: 50px;
+    color: blue;
+}
+.submit
+{
+     border: none;
+     background: none;
+     color: white;
+     font-weight: 700;
+     cursor: pointer;
+     font-size: 17px;
+}
+.submit:hover{
+    cursor: pointer;
+}
+.from-text{
+    color: white;
+    z-index: 3;
+}

@@ -1,0 +1,337 @@
+@import url('https://fonts.googleapis.com/css2?family=Viaoda+Libre&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@1,700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Merriweather:ital,wght@1,700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Lobster&family=Merriweather:ital,wght@1,700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Lobster&family=Merriweather:ital,wght@1,700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Merriweather:ital,wght@1,700&display=swap');
+.main-container{
+    scroll-snap-type: y mandatory;
+     overflow-y: scroll;
+     height: 100vh;
+     overflow-x: hidden;
+}
+section {
+    height: 100vh;
+    justify-content: center;
+    color: white;
+    scroll-snap-align: start;
+}
+
+.three{
+    background-color: #49BEB7;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+.microsoft-team{
+    color: rgb(0, 0, 0);
+    padding: 20px;
+    font-size: 10vh;
+    font-family: 'Merriweather', serif;
+}
+.three-img{
+    position: relative;
+    height: 70vh;
+    width: 44vw;
+      box-shadow: 0 0 30px black;
+    border-radius: 0 150px 20px 0;
+    background-image: url(https://images.unsplash.com/photo-1503423571797-2d2bb372094a?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=667&q=80);
+    backdrop-filter: blur(5px);
+}
+
+.all-icons{
+    
+   margin-left: 4px;
+   align-items: center;
+   margin-top: 12px;
+  
+   position: absolute;
+   display: flex;
+   z-index: 6;
+  
+}
+.icon-text{
+    background-color: rgb(0, 0, 0);
+    color: rgb(255, 255, 255);
+    border-radius: 5px;
+    padding: 5px;
+    font-weight: 500;
+}
+.icon-text:hover{
+    color: rgb(14, 255, 255);
+    background-color: #000000;
+}
+.icon-mic
+{  color: rgb(2, 7, 75);
+    align-items: center;
+    font-size: 10vh;
+}
+.icon-screen{
+    color: rgb(224, 0, 75);
+    font-size: 10vh;
+}
+.icon-people{
+   color: rgb(177, 0, 0);
+    font-size: 10vh;
+}
+.icon-chat{
+   color: rgb(104, 0, 114);
+    font-size: 10vh;
+}
+.join-meet{
+    color: lightsalmon;
+    text-align: center;
+    font-weight: 800;
+    font-size: 40px;
+    margin-top: 40px;
+    font-family: 'Merriweather', serif;
+    
+}
+.join-div{
+    margin-top: 7vh;
+    margin-left: 12vw;
+}
+.join-button{
+    padding: 10px;
+    background-color: rgb(183, 201, 202);
+    border-radius: 10px;
+    margin: auto;
+    margin-left: 50px;
+    color: rgb(0, 0, 0);
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.join-button:hover{
+    box-shadow: 0 0 10px black;
+}
+
+#joincode{
+  background-color: rgb(203, 230, 221);
+  
+  height: 30px;
+  width: 250px;
+  font-size: 20px;
+  outline: none;
+  padding: 20px;
+}
+.still{
+    font-size: 30px;
+    font-weight: 600;
+    margin-left: 10vw;
+    margin-top: 10vh;
+}
+.create-text{
+    font-size: 40px;
+    font-weight: 800;
+    margin-left: 13vw;
+    margin-top: 5vh;
+    font-family: 'Merriweather', serif;
+    color: #FC5185;
+} 
+.create-room{
+    padding: 10px;
+    background-color: rgb(195, 231, 212);
+    border-radius: 10px;
+    margin: auto;
+    margin-top: 7vh;
+    margin-left: 19vw;
+    color: rgb(0, 0, 0);
+    font-size: 25px;
+    font-weight: 700;
+ }
+
+ .create-room:hover{
+     box-shadow: 0 0 10px rgb(214, 203, 203);
+ }
+
+ .last-line{
+    color:rgb(255, 255, 255);
+    margin-top: 12vh;
+    margin-left: 13vw;
+    font-size: 40px;
+    font-family: 'Dancing Script', cursive;
+ }
+.four{
+    background-color: lightsalmon;
+}
+  .img-two{
+    height: 30%;
+    width: 40%;
+  }
+  .img-outer{
+    background-color:rgb(73, 71, 71);
+    box-shadow: 0 0 10px white;
+    margin-right: 40px;
+    border-radius: 20px;
+  }
+  .one-outer{
+    margin-top: 10vh;
+    margin-left: 100px;
+  }
+  
+  .two{
+    background:url(https://cms.bitlab.host/api/data/72/categories/101/background-image.jpg);
+    background-size: cover;
+    display: grid;
+    overflow-y: hidden;
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+  .two div img{
+       width: 350px;
+    }
+    .img-text{
+        color: #000000;
+        text-align: center;
+        font-size: 20px;
+        justify-content: center;
+        margin-top: 20px;
+        font-weight: 500;
+    }
+  .two-1
+  {
+      padding: 20px;
+      background-color: #49BEB7;
+      margin: 60px;
+      box-shadow: 0 0 30px black;
+  }
+  .two-2{
+    padding: 20px;
+      background-color: #FC5185;
+      margin: 60px;
+      box-shadow: 0 0 30px black;
+  }
+  .two-3{
+    padding: 20px;
+      background-color: rgb(70, 248, 150);
+      margin: 60px;
+      box-shadow: 0 0 30px black;
+  }
+  @media screen and (max-width:1400px){
+      .two-1{
+          padding:10px;
+          margin: 30px;
+      }
+      .two-2
+      {
+          padding: 10px;
+          margin: 30px;
+      }
+      .two-3{
+          padding: 10px;
+          margin: 30px;
+      }
+  }
+
+  .img-head{
+      text-align: center;
+      font-size: 37px;
+      font-family: freestyle;
+      font-weight: 700;
+  }
+  .doubt-img img{
+      height: 30vh;
+      width: 40vw;
+   
+  }
+  .doubt-img{
+      display: grid;
+      grid-template-columns: 40% 60%;
+  }
+  .doubt-heading{
+      margin-top: 40px;
+      font-family: 'Merriweather', serif;
+    }
+   
+    .doubt-heading pre{
+        font-weight: 600;
+        font-size: 40px;
+        font-family: 'Dancing Script', cursive;
+    }
+   
+     
+    .mail-img img{
+        height: 30vh;
+        width: 40vw;
+     
+    }
+    .mail-img{
+        margin-top: 9vh;
+        display: grid;
+        grid-template-columns: 60% 40%;
+    }
+    .mail-heading{
+        margin-left: 50px;
+        margin-top: 40px;
+        font-family: 'Merriweather', serif;
+      }
+     
+      .mail-heading pre{
+          font-weight: 600;
+          font-size: 40px;
+          font-family: 'Dancing Script', cursive;
+      }
+
+   
+    .credits{
+        
+        margin-top: 33px;
+        background-color: #d585f5;
+        margin-bottom: 0;
+        height: 12vh;
+        text-align: center;
+        font-weight: 600;
+        color: #000000;
+        font-size: 20px;
+    }
+    @media  (max-width:1400px) {
+
+          .credits{
+        margin-top: 34px;
+        background-color: #d585f5;
+        margin-bottom: 0;
+        height: 12vh;
+        text-align: center;
+        font-weight: 600;
+        color: #000000;
+        font-size: 15px;
+    }
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
