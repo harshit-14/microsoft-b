@@ -1,3 +1,4 @@
+//storing roomId with participants present in those room
 const mongoose=require('mongoose')
 const Schema=mongoose.Schema
 

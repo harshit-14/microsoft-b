@@ -5,7 +5,7 @@ const jwt=require('jsonwebtoken')
 
 module.exports=(app)=>{
     
-    //register 
+    //registering new user
     app.post('/register',(req,res)=>{
         console.log(req.body)
         const {name,email,password}=req.body
@@ -67,7 +67,7 @@ module.exports=(app)=>{
 
     })
 
-    //login
+    //login user
     app.post('/login',(req,res)=>{
         const {email,password}=req.body
         if(!email||!password)

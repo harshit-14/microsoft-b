@@ -1,3 +1,4 @@
+//storing messages in chat room (adapt feature)
 const mongoose=require('mongoose')
 const Schema=mongoose.Schema
 

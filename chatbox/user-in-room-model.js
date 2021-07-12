@@ -1,3 +1,4 @@
+//collection of all the rooms user has joined
 const mongoose=require('mongoose')
 const Schema=mongoose.Schema
 

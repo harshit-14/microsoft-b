@@ -2,7 +2,8 @@ const RoomIdModel = require("./room-id-model")
 const UserInRooms= require("./user-in-room-model")
 const RoomMessages=require('./chat-in-rooms-model')
 module.exports=(app)=>{
-
+    
+    //user creating new chat room
     app.post("/chatbox/createRoom",(req,res)=>{
      const {name,email,roomname,roomId} =req.body
      console.log(req.body)
@@ -65,7 +66,8 @@ module.exports=(app)=>{
                 res.json(e)
             })
     })
-    
+     
+    //user joining a chatroom
     app.post("/chatbox/joinRoom",(req,res)=>{
         const {name,email,roomId} = req.body;
         RoomIdModel.findOne({roomId})
@@ -141,7 +143,8 @@ module.exports=(app)=>{
             return res.status(400).json({msg:"no room found"})
         })
     })
-
+    
+    //saving new messages
     app.post('/chatbox/messArrived',(req,res)=>{
         const {roomId,name,mess,email}=req.body;
         RoomMessages.findOne({roomId})
@@ -189,6 +192,7 @@ module.exports=(app)=>{
             })
 
     })
+    //fetching all the messages in that room
     app.get('/chatbox/mess/:roomId',(req,res)=>{
         const {roomId}=req.params
         RoomMessages.findOne({roomId})
@@ -200,7 +204,8 @@ module.exports=(app)=>{
                 return res.json(err)
             })
     })
-  
+     
+    //getting userinfo
     app.get('/chatbox/userInfo/:email',(req,res)=>{
         const {email}=req.params
         UserInRooms.findOne({email})
@@ -211,6 +216,7 @@ module.exports=(app)=>{
                         res.json(err)
                     })
     })
+    //getting roominfo
     app.get('/chatbox/roomInfo/:roomId',(req,res)=>{
         const {roomId}=req.params
         RoomIdModel.findOne({roomId}) 
@@ -221,10 +227,9 @@ module.exports=(app)=>{
                 res.json(err)
             })
     })
+    //user is leaving the room
     app.post('/chatbox/leaveroom',(req,res)=>{
         const {email,name,roomId} = req.body
-      
-        
         UserInRooms.find(email)
         .then((data)=>{
             console.log(data[0].rooms.length);
@@ -237,7 +242,6 @@ module.exports=(app)=>{
                    data[0].save()
                    RoomIdModel.find(roomId)
                    .then((room)=>{
-                    
                       for(let j=0;j<room[0].participants.length;j++)
                       {
                           console.log(room[0].participants[j].email)
@@ -254,7 +258,6 @@ module.exports=(app)=>{
                    .catch((e)=>console.log(e))
                 }
             }
-           // console.log(data.rooms.size)
         })
         .catch(e=>console.log(e))
     })

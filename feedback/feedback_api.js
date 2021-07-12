@@ -1,6 +1,7 @@
 const { reset } = require('nodemon')
 const Feedback=require('./feedback_model')
 module.exports=(app)=>{
+    //collecting response from user
     app.post("/api/feedback",(req,res)=>{
     const {email,rating}=req.body 
     console.log(req.body)
