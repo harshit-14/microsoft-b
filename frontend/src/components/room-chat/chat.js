@@ -95,7 +95,6 @@ export default function Chat(props)
                event.preventDefault();
                if(data)
                {
-                   console.log("props.socket===============>",props.socket)
                    const outer = document.getElementById('chatbox')
                    const newmess=document.createElement('div')
                    newmess.textContent=data

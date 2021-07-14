@@ -32,14 +32,14 @@ export default function Chat(props) {
       
     //making socket instance
     useEffect(()=>{
-        socketInstance.current=io('https://ms-teams-backend-hk.herokuapp.com');
+        socketInstance.current=io('https://ms-team-backend-hk.herokuapp.com');
         socketInstance.current.emit('join-room',roomId);
 
     },[])
 
     //setting user info in session storage
     useEffect(() => {
-            axios.get(`https://ms-teams-backend-hk.herokuapp.com/chatbox/userInfo/${email}`)
+            axios.get(`https://ms-team-backend-hk.herokuapp.com/chatbox/userInfo/${email}`)
             .then(data=>{
                 if(data.data)
                 {
@@ -63,13 +63,13 @@ export default function Chat(props) {
             email,
             roomId:id
         }
-        axios.post('https://ms-teams-backend-hk.herokuapp.com/chatbox/createRoom',data)
+        axios.post('https://ms-team-backend-hk.herokuapp.com/chatbox/createRoom',data)
             .then(res=>{
                 const x={
                     author:props.currentUserId,
                     roomId:id
                 }
-                axios.post('https://ms-teams-backend-hk.herokuapp.com/rooms',x)
+                axios.post('https://ms-team-backend-hk.herokuapp.com/rooms',x)
                 .then(res=>{
                     console.log(res)
                 })
@@ -106,7 +106,7 @@ export default function Chat(props) {
             email,
             roomId:roomname
         }
-        axios.post('https://ms-teams-backend-hk.herokuapp.com/chatbox/joinRoom',data)
+        axios.post('https://ms-team-backend-hk.herokuapp.com/chatbox/joinRoom',data)
             .then(res=>{
                 console.log(res)
                 setShowJoin(false)
