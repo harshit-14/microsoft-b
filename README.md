@@ -11,3 +11,5 @@ cd frontend</br>
 -> Frontend </br>
 * npm install
 * npm start
+</br>
+YouTube https://youtu.be/qS5vImhvTFs
