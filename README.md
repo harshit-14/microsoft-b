@@ -24,7 +24,7 @@ npm install
 npm start
 ```
 
-## Functionalities are explined in this video !!!
+## Functionalities are explained in this video !!!
 ###  YouTube https://youtu.be/qS5vImhvTFs
 </br>
 Separate frontend repository :- https://github.com/harshit-14/microsoft-f
